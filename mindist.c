@@ -1,14 +1,15 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "dihcodes.h"
 
 
-int mindistD(ull d);
-int re_mindistD(ull d, ull stem, int my1pos, int noones, int no0sused, int nosec0);
-int check_comb(ull d, ull rowcomb);
+int mindistD(i_64 d);
+int re_mindistD(i_64 d, i_64 stem, int my1pos, int noones, int no0sused, int nosec0);
+int check_comb(i_64 d, i_64 rowcomb);
 
 int main(int argc, char *argv[])
 {
-    ull d = strbin(argv[1]);
+    i_64 d = strbin(argv[1]);
 
     if (mindistD(d)) printf("Minimum distance is at least D.\n");
     else printf("Minimum distance is less than D.\n");
@@ -16,7 +17,7 @@ int main(int argc, char *argv[])
     return(0);
 }
 
-int mindistD(ull d)
+int mindistD(i_64 d)
 {
     int posswt, psec1;
     
@@ -33,7 +34,7 @@ int mindistD(ull d)
 
 }
 
-int re_mindistD(ull d, ull stem, int my1pos, int noones, int no0sused, int nosec0)
+int re_mindistD(i_64 d, i_64 stem, int my1pos, int noones, int no0sused, int nosec0)
 {
 
     int position;
@@ -61,9 +62,9 @@ int re_mindistD(ull d, ull stem, int my1pos, int noones, int no0sused, int nosec
     return(1);
 }
 
-int check_comb(ull d, ull rowcomb)
+int check_comb(i_64 d, i_64 rowcomb)
 {
-    ull codeword = d;
+    i_64 codeword = d;
     int i;
 
     for (i = 1; i < K; i++) 

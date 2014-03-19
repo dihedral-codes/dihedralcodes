@@ -1,17 +1,14 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "dihcodes.h"
-
-int K = 0;
-int D = 0;
-ull MASK = 0;
 
 int main(int argc, char *argv[])
 {
-    int u, v, w, x, y;
+    int u, v, w;
     int cont = 1;
     
-    kdmask(argv);
-    ull d = binstr(argv[1]);
+    kdmask(argv, 2);
+    i_64 d = strbin(argv[1]);
 
     for (u = 1; u <= K/2; u++){
         if (wt(d ^ rowi(d, u)) < 10){

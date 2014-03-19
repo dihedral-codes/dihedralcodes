@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "dihcodes.h"
 
 /* 
@@ -35,15 +36,28 @@ int unitary(i_64 d)
 }
 
 // Assigns the global variables K, D and MASK from an argv.
-void kdmask(char *argv[])
+void kdmask(char *argv[], int start)
 {
     int i;
 
-    K = (int) strtol(argv[2], NULL, 10);
-    D = (int) strtol(argv[3], NULL, 10);
+    K = (int) strtol(argv[start], NULL, 10);
+    D = (int) strtol(argv[start+1], NULL, 10);
     MASK = 0;
 
     for (i = 0; i < K; i++){
-        MASK |= 0xFULL << 4 * i;
+        MASK |= 0x1ULL << i;
     }
+}
+
+// Returns an unsigned long long as a string with 1's and 0's.
+char *binstr(unsigned long long d)
+{
+    char *s = malloc(sizeof(char) * 65);
+    int i;
+
+    for (i = 0; i < 64; i++)
+        s[i] = (((d >> (63-i)) & 1ULL) ? '1' : '0');
+    s[64] = '\0';
+
+    return s;
 }
